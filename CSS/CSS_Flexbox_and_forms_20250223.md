@@ -4,8 +4,8 @@
 * umožňuje dávat elementy na webu vedle sebe místo používání floatu container, který obsahuje dva a více elementů:
 
 ```
-.container {
-  display: flex;
-}
+  .container {
+    display: flex;
+  }
 ```
 
