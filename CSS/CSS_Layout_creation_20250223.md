@@ -4,16 +4,16 @@
 
 ### Plan the project before starting to code
 
-  * create mock-ups ([low fidelity](https://www.google.com/search?q=low+fidelity&newwindow=1&source=lnms&sa=X&ved=0ahUKEwiwsLmS0srfAhWGDywKHXkvDMEQ_AUIDigB&biw=1680&bih=869&udm=2)): pencil & paper or programs like:
-    * [x] [Pencil project](https://pencil.evolus.vn/)
-    * [x] [AdobeXD](https://www.adobe.com/products/xd.html)
-  * plan for viewing the website on different devices and the kind of users will view it
-  * check for inspiration online - similar websites
-  * the layout image can be created with tools:
-    * [x] [Sketch](https://www.sketchapp.com/)
-    * [x] [AdobeXD](https://www.adobe.com/pl/products/xd.html)
-    * [x] [Figma](https://www.figma.com/)
-    * [x] [Framer](https://framer.com/)
+* create mock-ups ([low fidelity](https://www.google.com/search?q=low+fidelity&newwindow=1&source=lnms&sa=X&ved=0ahUKEwiwsLmS0srfAhWGDywKHXkvDMEQ_AUIDigB&biw=1680&bih=869&udm=2)): pencil & paper or programs like:
+  * [x] [Pencil project](https://pencil.evolus.vn/)
+  * [x] [AdobeXD](https://www.adobe.com/products/xd.html)
+* plan for viewing the website on different devices and the kind of users will view it
+* check for inspiration online - similar websites
+* the layout image can be created with tools:
+  * [x] [Sketch](https://www.sketchapp.com/)
+  * [x] [AdobeXD](https://www.adobe.com/pl/products/xd.html)
+  * [x] [Figma](https://www.figma.com/)
+  * [x] [Framer](https://framer.com/)
 
 ### Reset or normalize
 
@@ -26,7 +26,7 @@
   }
   ```
 
-* je celá řada uznávaných resetů v CSS, například: 
+* je celá řada uznávaných resetů v CSS, například:
   * [HTML5 Reset Stylesheet](https://html5doctor.com/html-5-reset-stylesheet/)
 
 * trochu modernější způsob je ne reset, ale **normalize** na nějaké chytřejší hodnoty - například podle tohohle:
@@ -34,7 +34,7 @@
 
 * podle něj to není nutné na každý projekt, ale můžeme to potřebovat
 
-* <mark>co budu chtít nejspíš nastavit pokaždý je `box-sizing`:</mark>
+<mark>* co budu chtít nejspíš nastavit pokaždý je `box-sizing`:</mark>
 
   ``` css
   * {
@@ -49,12 +49,11 @@
   * fully centered: the content and individual sections are centered
   * centered content: the sections are 100% wide and the content is centered (pozad9 sekcí zabírá celou šířku, ale jejich obsah jen velikost containeru a je to centrované)
 
-
 ### First steps
 
 * budu mít vždycky sekci, v té bude `<div>` s class `.container`, v tom potom další objekty, které pomocí flexboxu budou různě uspořádané
 
-> ad workshop & projekt day 4:
+ad workshop & projekt day 4:
 
 > * nekopírovat vlastnosti z návrhu, většinu z nich vůbec nemusím nastavovat - například souřadnice apod
 > * když si v návrhu ve vývojářském módu kliknu na věc, uvidím její vlastnosti
