@@ -35,11 +35,11 @@
 * podle něj to není nutné na každý projekt, ale můžeme to potřebovat
 
 * <mark>co budu chtít nejspíš nastavit pokaždý je `box-sizing`:</mark>
+
   ``` css
   * {
     box-sizing: border-box;
-  }
-```
+  }```
 
 > **sanitize** asi úplně často nevyužiju - kombinuje to normalize a k tomu to přidává další styly, které by se mi jakože mohly hodit, opravuje to bugs atd.:
 > [Sanitize.css](https://github.com/csstools/sanitize.css)
