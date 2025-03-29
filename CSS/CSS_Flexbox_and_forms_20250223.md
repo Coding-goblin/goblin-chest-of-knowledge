@@ -12,7 +12,11 @@
 
 * dá se to vedle sebe a smrskne se to na co nejmenší šířku vedle sebe
 
-* pokud chci mezi nimi rozestupy, můžu nastavit přes gap: [xz]px
+* pokud chci mezi nimi rozestupy, můžu nastavit přes ``gap: [počet]px``
+
+___
+
+## Justify-content
 
 * flexbox samotný se chová jako element, položky uvnitř něj můžeme rovnat v rámci jeho velikosti
 
@@ -24,6 +28,10 @@
   * ```space-around``` rozdělí to tak, že dva díly jsou mezi položkami, jeden díl na začátku a konci
 
   * ```space-evenly``` rozdělí tak, že jsou mezi nimi, na začátku i konci, stejné mezery
+
+___
+
+## Flex-direction, align-items, stretch
 
 * **flexbox má 2 osy, podle kterých rovná položky:** hlavní osa směřující zleva doprava + vedlejší osa, která je kolmá na ni a vede shora dolů
 
@@ -38,6 +46,10 @@ standardně je to ```row```, ale můžu to prohodit přes ```row-reverse``` změ
       * ```flex start```  = fixuje se to k horní hraně
       * ```flex-end``` = fixuje se na dolní hranu
       * ```center``` = přesně uprostřed
+
+___
+
+## Flex order
 
 * prvky se ve flexboxu skládají primárně v pořadí, v jakém jsou v html kódu
 
@@ -55,6 +67,10 @@ standardně je to ```row```, ale můžu to prohodit přes ```row-reverse``` změ
 * takhle to můžu srovnat nezávisle na pořadí položek v html, tím měním vzhled stránky
 
 * ale v html by i tak měl být nejdůležitější věci první - například content, protože to pak čtečky čtou slepcům podle toho
+
+___
+
+## Flex grow & flex shrink
 
 * pro každou položku si můžu nastavit vlastnosti:
 
@@ -75,7 +91,7 @@ standardně je to ```row```, ale můžu to prohodit přes ```row-reverse``` změ
 * `flex-basis` šířka, kterou si ideálně přeju, aby ta položka ve flexboxu měla, pokud je to možné, může mít různé jednotky, i procenta
 
 * `auto` automaticky spočítá, pokud má určenou zároveň `width`, tak to vezme tuto šířku
-* můžu tuhle vlastnost teoreticky ignorovat, vždycky je to na začátku nastaveno na auto a přebírá to width
+* můžu tuhle vlastnost teoreticky ignorovat, vždycky je to na začátku nastaveno na auto a přebírá to `width`
 * pokud jsem si nastavila u konkrétní položky flex-basis třeba na 35px a zároveň mám povoleno `shrink` a `grow` u všech položek na stejné hodnotě, tak stejně budou všechny položky stejně široké
 * pokud bych mermomocí chtěla konkrétní šířku, tak musím nastavit `shrink` a `grow` na 0 a tím je zakázat
 
@@ -83,6 +99,10 @@ standardně je to ```row```, ale můžu to prohodit přes ```row-reverse``` změ
 
 * pokud se tam všechny nevejdou, trčí položky ven - flexbox se podívá, které položky mají dovoleno `shrink`, sečte prostor navíc, a rozdělí ho mezi položky s povoleným ke `shrink` a o to ty položky zmenší, aby se v závěru všechny položky vešly
 pokud nejde `shrink`, tak to bude trčet ven
+
+___
+
+## Flex wrap
 
 * pokud chci, aby se položky zalamovaly na další řádek, tak nastavím vlastnost ``flex-wrap: wrap;``
   * nezávisle na hodnotách grow a shrink se nastaví položky podle mojí flex-basis a přebytek se zalomí na další řádek
@@ -106,6 +126,10 @@ pokud nejde `shrink`, tak to bude trčet ven
   .item3 {flex: 1 1 100%;
   }
   ```
+
+___
+
+## Other remarks
 
 * `align-content`: řídí to, jak se alignuje blok všech položek ve flexboxu uvnitř prostoru flexboxu
   * skoro nikdy to v praxi nepoužiju
