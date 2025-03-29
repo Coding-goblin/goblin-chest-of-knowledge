@@ -3,7 +3,7 @@
 ## Good practices
 
 * before starting to code, *plan the project*
-  * create mock-ups (low fidelity): pencil & paper or programs like:
+  * create mock-ups ([low fidelity](https://www.google.com/search?q=low+fidelity&newwindow=1&source=lnms&sa=X&ved=0ahUKEwiwsLmS0srfAhWGDywKHXkvDMEQ_AUIDigB&biw=1680&bih=869&udm=2)): pencil & paper or programs like:
     * [x] [Pencil project](https://pencil.evolus.vn/)
     * [x] [AdobeXD](https://www.adobe.com/products/xd.html)
 
