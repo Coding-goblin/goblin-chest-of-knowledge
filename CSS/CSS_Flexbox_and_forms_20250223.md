@@ -47,10 +47,12 @@ standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` zm�
 * můžu měnit jejich pořadí pomocí order:
   * pokud jsem to nenastavila, mají všechny prvky hodnotu 0
 pak se řadí od nejmenší po nejvyšší hodnoty, musím tím pádem nastavit hodnotu všem, pokud chci něco měnit
-.item3 {order: 3}
+
+<code>.item3 {order: 3}
 .item3 {order: 1}
 .item3 {order: 4}
-.item3 {order: 2}
+.item3 {order: 2}</code>
+
 takhle to můžu srovnat nezávisle na pořadí položek v html, tím měním vzhled stránky
 ale v html by i tak měl být nejdůležitější věci první - například content, protože to pak čtečky čtou slepcům podle toho
 
