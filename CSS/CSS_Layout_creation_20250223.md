@@ -34,7 +34,7 @@
 
 * podle něj to není nutné na každý projekt, ale můžeme to potřebovat
 
-* ==co budu chtít nejspíš nastavit pokaždý je `box-sizing`:==
+* <mark>co budu chtít nejspíš nastavit pokaždý je `box-sizing`:</mark>
   ``` css
   * {
     box-sizing: border-box;
