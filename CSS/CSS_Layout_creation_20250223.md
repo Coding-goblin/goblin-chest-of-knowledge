@@ -4,8 +4,8 @@
 
 * before starting to code, *plan the project*
   * create mock-ups (low fidelity): pencil & paper or programs like:
-    [x] [Pencil project](https://pencil.evolus.vn/)
-    [x] [AdobeXD](https://www.adobe.com/products/xd.html)
+    * [x] [Pencil project](https://pencil.evolus.vn/)
+    * [x] [AdobeXD](https://www.adobe.com/products/xd.html)
 
 
 často chceme některé vlastnosti úplně vynulovat, nebo normalizovat na lepší hodnoty - například:
