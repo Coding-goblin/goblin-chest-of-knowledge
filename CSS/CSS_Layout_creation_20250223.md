@@ -34,7 +34,7 @@
 
 * podle něj to není nutné na každý projekt, ale můžeme to potřebovat
 
-==* co budu chtít nejspíš nastavit pokaždý je `box-sizing`:==
+* ==co budu chtít nejspíš nastavit pokaždý je `box-sizing`:==
   ``` css
   * {
     box-sizing: border-box;
@@ -51,7 +51,7 @@
 
 ### First steps
 
-* budu mít vždycky sekci, v té `container`, v tom potom objekty, které pomocí flexboxu budou různě uspořádané
+* budu mít vždycky sekci, v té bude `<div>` s class `.container`, v tom potom další objekty, které pomocí flexboxu budou různě uspořádané
 
 > ad workshop & projekt day 4:
 
