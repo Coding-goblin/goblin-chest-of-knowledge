@@ -1,14 +1,15 @@
 # Flexbox and forms
 
+``` css
 * přibylo do CSS asi před 12 lety
 * umožňuje dávat elementy na webu vedle sebe místo používání floatu
 * container, který obsahuje dva a více elementů:
 
-```
+
   .container {
     display: flex;
   }
-```
+
 
 * dá se to vedle sebe a smrskne se to na co nejmenší šířku vedle sebe
 
@@ -25,50 +26,48 @@
 
 * ```space-evenly``` rozdělí tak, že jsou mezi nimi, na začátku i konci, stejné mezery
 
-
 * **flexbox má 2 osy, podle kterých rovná položky:** hlavní osa směřující zleva doprava + vedlejší osa, která je kolmá na ni a vede shora dolů
 
-* směr osy můžeme změnit: ```flex-direction:```
-standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` změnit na ```column``` (hlavní osa pak bude shora dolů a položky taky), ```column-reverse``` (hlavní osa bude zdola nahoru a položky taky)
-
+* směr osy můžeme změnit: flex-direction:
+standardně je to row, ale můžu to prohodit přes row-reverse změnit na column (hlavní osa pak bude shora dolů a položky taky), column-reverse (hlavní osa bude zdola nahoru a položky taky)
 
 * flexbox container nemá určenou výšku, ale můžu mu ji nastavit přes height:
   * pak se ale položky natáhnou podle ní, aby vyplnily celý flex - jinak je flexbox tak vysoký, jako položky
-  * to roztahování je ovlivněno vlastností ```align-items:```, které určuje zarovnání vertikálně
+  * to roztahování je ovlivněno vlastností align-items:, které určuje zarovnání vertikálně
 
-    * základní poloha je ```stretch```: při stretch se natáhnou na výšku flexboxu a ten je tak vysoký, jako nejvyyšší položka
-      * ```flex start```  = fixuje se to k horní hraně
-      * ```flex-end``` = fixuje se na dolní hranu
-      * ```center``` = přesně uprostřed
+    * základní poloha je stretch: při stretch se natáhnou na výšku flexboxu a ten je tak vysoký, jako nejvyyšší položka
+      * flex-start = fixuje se to k horní hraně
+      * flex-end = fixuje se na dolní hranu
+      * center = přesně uprostřed
 
 * prvky se ve flexboxu skládají primárně v pořadí, v jakém jsou v html kódu
 
-
 * můžu měnit jejich pořadí pomocí order:
   * pokud jsem to nenastavila, mají všechny prvky hodnotu 0
-pak se řadí od nejmenší po nejvyšší hodnoty, musím tím pádem nastavit hodnotu všem, pokud chci něco měnit
+    pak se řadí od nejmenší po nejvyšší hodnoty, musím tím pádem nastavit hodnotu všem, pokud chci něco měnit
 
-<code>.item3 {order: 3}
+
+.item3 {order: 3}
 .item3 {order: 1}
 .item3 {order: 4}
-.item3 {order: 2}</code>
+.item3 {order: 2}
 
-takhle to můžu srovnat nezávisle na pořadí položek v html, tím měním vzhled stránky
+
+* takhle to můžu srovnat nezávisle na pořadí položek v html, tím měním vzhled stránky
 ale v html by i tak měl být nejdůležitější věci první - například content, protože to pak čtečky čtou slepcům podle toho
 
+* pro každou položku si můžu nastavit vlastnosti:
+  
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
 
-pro každou položku si můžu nastavit vlastnosti:
-flex-grow: 0;
 
-flex-shrink: 1;
-
-flex-basis: auto;
-zkratka:
-flex: 0 1 auto; 
-flex-grow určuje, zda se položka smí natáhnout do zbývajícího volného prostoru a vyplnit ho, základně je to 0 a nesmí se natahovat, můžu nastavit na 1
+  * zkratka:
+    * flex: 0 1 auto; 
+    * flex-grow určuje, zda se položka smí natáhnout do zbývajícího volného prostoru a vyplnit ho, základně je to 0 a nesmí se natahovat, můžu nastavit na 1
 pokud mají hodnotu 1 dvě položky zároveň, tak všechny položky, které mají jinou hodnotu než 0, flexbox sečte hodnoty a rozdělí ten zbývající prostor podle těch hodnot ke všem položkám v poměru podle těch hodnot - takže třeba položka s 1 dostane jeden díl, položka s 4 dostane čtyři díly
 flex-shrink funguje podobně jako flex-grow
-
 
 flex-basis šířka, kterou si ideálně přeju, aby ta položka ve flexboxu měla, pokud je to možné, může mít různé jednotky, i procenta
 auto automaticky spočítá, pokud má určenou zároveň width, tak to vezme tuto šířku
@@ -76,18 +75,16 @@ můžu tuhle vlastnost teoreticky ignorovat, vždycky je to na začátku nastave
 pokud jsem si nastavila u konkrétní položky flex-basis třeba na 35px a zároveň mám povoleno shrink a grow u všech položek na stejné hodnotě, tak stejně budou všechny položky stejně široké
 pokud bych mermomocí chtěla konkrétní šířku, tak musím nastavit shrink a grow na 0 a tím je zakázat
 
-
 ultimátní cíl flexboxu je, aby všechny položky byly vedle sebe a všechny se tam vešly
 pokud se tam všechny nevejdou, trčí položky ven - flexbox se podívá, které položky mají dovoleno shrink , sečte prostor navíc, a rozdělí ho mezi položky s povoleným shrink a o to ty položky zmenší, aby se v závěru všechny položky vešly
 pokud nejde shrinknout, tak to bude trčet ven
 
-
 pokud chci, aby se položky zalamovaly na další řádek, tak nastavím vlastnost flex-wrap: wrap;
 nezávisle na hodnotách grow a shrink se nastaví položky podle mojí flex-basis a přebytek se zalomí na další řádek
 
-
 flex-basis: auto; bez zapnutého flex-grow způsobí, že se velikost položek nastaví podle obsahu v nich
 pomocí wrapu můžu nastavit, aby byly třeba 3 položky tak, že dvě jsou na prvním a třetí na dalším řádku
+
 .container {
   display: flex;
   flex-wrap: wrap;
