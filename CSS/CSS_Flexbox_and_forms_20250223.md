@@ -44,8 +44,8 @@ standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` zm�
 * prvky se ve flexboxu skládají primárně v pořadí, v jakém jsou v html kódu
 
 
-můžu měnit jejich pořadí pomocí order:
-pokud jsem to nenastavila, mají všechny prvky hodnotu 0
+* můžu měnit jejich pořadí pomocí order:
+  * pokud jsem to nenastavila, mají všechny prvky hodnotu 0
 pak se řadí od nejmenší po nejvyšší hodnoty, musím tím pádem nastavit hodnotu všem, pokud chci něco měnit
 .item3 {order: 3}
 .item3 {order: 1}
