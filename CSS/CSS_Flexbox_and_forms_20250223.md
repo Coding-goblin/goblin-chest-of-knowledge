@@ -16,19 +16,19 @@
 
 * flexbox samotný se chová jako element, položky uvnitř něj můžeme rovnat v rámci jeho velikosti
 
-* ```justify-content```: výchozí hodnota je ```flex-start```
+  * ```justify-content```: výchozí hodnota je ```flex-start```
 
-* ```center flex-end```
-* ```space-between``` nejčastější - rozdělí rovnoměrně položky, aby první byla nalevo a poslední napravo
+  * ```center flex-end```
+  * ```space-between``` nejčastější - rozdělí rovnoměrně položky, aby první byla nalevo a poslední napravo
 
-* ```space-around``` rozdělí to tak, že dva díly jsou mezi položkami, jeden díl na začátku a konci
+  * ```space-around``` rozdělí to tak, že dva díly jsou mezi položkami, jeden díl na začátku a konci
 
-* ```space-evenly``` rozdělí tak, že jsou mezi nimi, na začátku i konci, stejné mezery
+  * ```space-evenly``` rozdělí tak, že jsou mezi nimi, na začátku i konci, stejné mezery
 
 * **flexbox má 2 osy, podle kterých rovná položky:** hlavní osa směřující zleva doprava + vedlejší osa, která je kolmá na ni a vede shora dolů
 
 * směr osy můžeme změnit: ```flex-direction:```
-standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` změnit na ```column``` (hlavní osa pak bude shora dolů a položky taky), ```column-reverse``` (hlavní osa bude zdola nahoru a položky taky)
+standardně je to ```row```, ale můžu to prohodit přes ```row-reverse``` změnit na ```column``` (hlavní osa pak bude shora dolů a položky taky), ```column-reverse``` (hlavní osa bude zdola nahoru a položky taky)
 
 * flexbox container nemá určenou výšku, ale můžu mu ji nastavit přes height:
   * pak se ale položky natáhnou podle ní, aby vyplnily celý flex - jinak je flexbox tak vysoký, jako položky
@@ -65,7 +65,7 @@ standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` zm�
   ```
 
   * zkratka:
-    * `flex: 0 1 auto;` 
+    * `flex: 0 1 auto;`
     * `flex-grow` určuje, zda se položka smí natáhnout do zbývajícího volného prostoru a vyplnit ho, základně je to 0 a nesmí se natahovat, můžu nastavit na 1
 
 * pokud mají hodnotu 1 dvě položky zároveň, tak všechny položky, které mají jinou hodnotu než 0, flexbox sečte hodnoty a rozdělí ten zbývající prostor podle těch hodnot ke všem položkám v poměru podle těch hodnot - takže třeba položka s 1 dostane jeden díl, položka s 4 dostane čtyři díly
@@ -75,10 +75,9 @@ standardně je to ```row``` , ale můžu to prohodit přes ```row-reverse``` zm�
 * `flex-basis` šířka, kterou si ideálně přeju, aby ta položka ve flexboxu měla, pokud je to možné, může mít různé jednotky, i procenta
 
 * `auto` automaticky spočítá, pokud má určenou zároveň `width`, tak to vezme tuto šířku
-můžu tuhle vlastnost teoreticky ignorovat, vždycky je to na začátku nastaveno na auto a přebírá to width
-pokud jsem si nastavila u konkrétní položky flex-basis třeba na 35px a zároveň mám povoleno shrink a grow u všech položek na stejné hodnotě, tak stejně budou všechny položky stejně široké
-pokud bych mermomocí chtěla konkrétní šířku, tak musím nastavit shrink a grow na 0 a tím je zakázat
-
+* můžu tuhle vlastnost teoreticky ignorovat, vždycky je to na začátku nastaveno na auto a přebírá to width
+* pokud jsem si nastavila u konkrétní položky flex-basis třeba na 35px a zároveň mám povoleno `shrink` a `grow` u všech položek na stejné hodnotě, tak stejně budou všechny položky stejně široké
+* pokud bych mermomocí chtěla konkrétní šířku, tak musím nastavit `shrink` a `grow` na 0 a tím je zakázat
 
 * ultimátní cíl flexboxu je, aby všechny položky byly vedle sebe a všechny se tam vešly
 
@@ -111,8 +110,9 @@ pokud nejde `shrink`, tak to bude trčet ven
 * `align-content`: řídí to, jak se alignuje blok všech položek ve flexboxu uvnitř prostoru flexboxu
   * skoro nikdy to v praxi nepoužiju
 
-* ještě existuje CSS grid, to je alternativa flexboxu, tam je pak i možnost `align-items`
+* ještě existuje `CSS grid`, to je alternativa flexboxu, tam je pak i možnost `align-items`
 
-* obrázky jako přímé potomky ve flexboxu je dobré dát do svého <div>, aby se neroztahovaly
+* obrázky jako přímé potomky ve flexboxu je dobré dát do svého `<div>`, aby se neroztahovaly
+
   * nebo nedám hodnotu `align-items: stretch;` ale třeba center nebo tak
-  * ale to jenom pokud tam nechci mít v html navíc <div>
+  * ale to jenom pokud tam nechci mít v html navíc `<div>`
