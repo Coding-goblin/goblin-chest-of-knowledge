@@ -226,21 +226,22 @@ main.scss
       border: 2px solid blue;
       padding: 10px;
   }
-```
+  ```
+
 * můžu udělat tohle:
 
   ``` scss
-  .menu {
-      display: flex;
-      gap: 10px;
-      padding: 0;
+    .menu {
+        display: flex;
+        gap: 10px;
+        padding: 0;
 
-      li {
-          list-style: none;
-          border: 2px solid blue;
-          padding: 10px;
-      }
-  }
+        li {
+            list-style: none;
+            border: 2px solid blue;
+            padding: 10px;
+        }
+    }
   ```
 
 * takhle zanořené styly se pak ve výsledném css ale stejně rozdělí do těch klasických takhle:
