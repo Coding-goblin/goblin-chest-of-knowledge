@@ -26,7 +26,7 @@ ___
   ```
 * Ten systém, kdy `<nav>` má `<ul>` a `<li>` a až v těch jsou odkazy, se dřív hodně doporučoval, protože kdyby se nenačetly styly, tak tam pořád zbyde seznam a bude to přehlednější 
 * Takhle se tam načtou se odkazy jen s basic textovou mezerou
-* Pak to třeba jinak čtou ty čtečky pro nevidomé, ale nevidomá komunita to spíš nemá ráda, když tam je tam seznam, protože to čte *"seznam: položka jedna...etc."*
+* Pak to třeba jinak čtou čtečky pro nevidomé, ale nevidomá komunita spíš nemá ráda, když je tam seznam, protože to čte *"seznam: položka jedna...etc."*
 * takhle bez toho seznamu aspoň nemusím řešit odstraňování odrážek
 
 * nastavení vzdálenosti položek v menu v CSS:
