@@ -141,10 +141,63 @@ ___
   ```
   to potom napojím do `main.scss`
 * tohle mi u větších projektů pomůže k přehlednosti apod.
-potom sass sežere ten můj soubor main.scss a kde mám ty importy, tam to nahradí kódem z těch jednotlivých partials
-dneska už probíhá přechod z @import na @use (ale to má pak jiné postupy)
-v budoucích verzích bude pak už jen @use, ale to teď nemusím řešit
-je i nějaká doporučená struktura složek a souborů, jak ty partials organizovat, např.:
+potom sass sežere ten můj soubor `main.scss` a kde mám ty importy, tam to nahradí kódem z těch jednotlivých partials
+dneska už probíhá přechod z `@import` na `@use` (ale to má pak jiné postupy)
+
+* v budoucích verzích bude pak už jen `@use`:
+
+___
+
+### `@use` vs. `@import` in SCSS
+
+#### `@import` (Old Method)
+- Used to import other SCSS files.
+- Merges styles, which can lead to duplication and performance issues.
+- Causes global scope pollution, making it harder to manage variables and mixins.
+
+  ```scss
+  @import "variables";
+  @import "mixins";
+  ```
+
+#### `@use` (Modern Approach)
+- Introduced in Dart Sass to replace `@import`.
+- Automatically **namespaces** imported files, preventing conflicts.
+- Loads each file only once, improving performance.
+
+##### Using `@use` with `as *`
+- Imports a file and **removes** its namespace, making all variables, mixins, and functions globally accessible.
+- **Use with caution** to avoid conflicts.
+
+  ```scss
+  @use "variables" as *; // Now all variables can be used directly
+  ```
+
+##### Using `@use` without `as *`
+- Keeps the imported file **namespaced**, requiring explicit reference.
+- Encourages modularity and avoids naming conflicts.
+
+  ```scss
+  @use "variables";
+
+  body {
+    color: variables.$primary-color;
+  }
+  ```
+
+#### Key Differences
+
+| Feature        | `@import` (Old) | `@use` (New) |
+|---------------|---------------|-------------|
+| Performance   | Slow (multiple loads) | Fast (loads once) |
+| Scope         | Global (pollution risk) | Namespaced (unless `as *` is used) |
+| Maintenance   | Harder (conflicts) | Easier (modular) |
+| Future-proof  | Deprecated | Recommended |
+
+___
+
+* je i nějaká doporučená struktura složek a souborů, jak ty partials organizovat, např.:
+
 scss/
 |-- settings/
 |    |-- _all.scss
@@ -241,8 +294,7 @@ taky třeba:
   }
 }
 
-> [vsuvka: Bestshop - je v poradku nastavit napevno hodnoty sirky elementu napr., ale pak udelam casem treba pomer procentualni
-
-nastavim napevno 623px a 440px a pak dam flex shrink a flex grow obema 1 1
-v realu bych treba poresila s grafikem, ze obrazek bude fixne velky a text vedle se bude zuzovat a roztahovat dle stranky - preferenci si rekne treba grafik
-nastavovat min-height, ne height napevno, protoze treba firma prida vic textu a rozhaze se tim ten boxik]
+> vsuvka: Bestshop project - je v poradku nastavit napevno napr. hodnoty sirky elementu, ale pak udelam casem treba pomer procentualni
+> nastavim napevno `623px` a `440px` a pak dam `flex-shrink` a `flex-grow` obema 1 1
+> v realu bych treba poresila s grafikem, ze obrazek bude fixne velky a text vedle se bude zuzovat a roztahovat dle stranky - preferenci si rekne treba grafik
+>nastavovat `min-height`, ne `height` napevno, protoze treba firma prida vic textu a rozhaze se tim ten boxik
