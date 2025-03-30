@@ -117,7 +117,7 @@ ___
 
 ___
 
-### SASS compilation
+## SASS compilation
 
 * sass compiluje css tak, aby zabíralo co nejmíň dat, narve to všechno do jednoho dlouhého řádku - mezery apod. prohlížeč nevyžaduje, to je pro mě, aby se to dobře četlo
 * sass taky během kompilace odstraní komentáře v css
@@ -136,9 +136,10 @@ ___
 * budu mít ve složce scss jednotlivé partials, jejiž jméno bude vždy začínat _
 * takže takhle si ten projekt rozkouskuju do sekcí, například `_variables.scss`
 * přes 
-  ```css
+  ``` scss
   @import "_variables";
-  ``` to potom napojím do `main.scss`
+  ```
+  to potom napojím do `main.scss`
 * tohle mi u větších projektů pomůže k přehlednosti apod.
 potom sass sežere ten můj soubor main.scss a kde mám ty importy, tam to nahradí kódem z těch jednotlivých partials
 dneska už probíhá přechod z @import na @use (ale to má pak jiné postupy)
