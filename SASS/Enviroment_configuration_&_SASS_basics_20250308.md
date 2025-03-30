@@ -197,7 +197,7 @@ ___
 ___
 
 * je i nějaká doporučená struktura složek a souborů, jak ty partials organizovat, např.:
-
+```
 scss/
 |-- settings/
 |    |-- _all.scss
@@ -212,87 +212,102 @@ scss/
 |-- vendor/
 |    |-- _jquery.ui.scss
 main.scss
-asi lepší doporučení zde: https://sass-guidelin.es/#architecture
-NESTING
+```
+* asi lepší doporučení zde: https://sass-guidelin.es/#architecture
 
-teď se ještě používá v SASS, teď už je to v podstatě implementováno do CSS, neumí to ještě pár mobilních prohlížečů
+## Nesting
 
+* teď se ještě používá v SASS, ale už je to v podstatě implementováno do CSS, neumí to ještě pár mobilních prohlížečů
+* místo:
 
-místo:
-.menu li {
-    list-style: none;
-    border: 2px solid blue;
-    padding: 10px;
- }
-můžu udělat tohle:
-
-.menu {
-    display: flex;
-    gap: 10px;
-    padding: 0;
-
-    li {
-        list-style: none;
-        border: 2px solid blue;
-        padding: 10px;
-    }
-}
- takhle zanořené styly se pak ve výsledném css ale stejně rozdělí do těch klasických takhle:
-
-.menu li {
-    list-style: none;
-    border: 2px solid blue;
-    padding: 10px;
-}
-
-
-je to pohodlnější v tom, že je z toho na první pohled vidět, jaká je struktura stylu
-podobně jako u klasických css selektorů je dobré si rozmyslet, kdy to zanořování dělat, protože tím zvyšuju někdy i zbytečně specificitu těch selektorů
-stejně tak můžu používat znaky jako + > apod:
-.menu {
-    display: flex;
-    gap: 10px;
-    padding: 0;
-
-    > li {
-        list-style: none;
-        border: 2px solid blue;
-        padding: 10px;
-    }
-}
-pokud použiju v nestingu &, tak se tam doplní název selektoru rodiče (?) - můžu takhle vytvořit název dle metodologie BEM a nemusím pořád opakovat ten začátek
-.article {
-    display: flex;
-    gap: 10px;
-    padding: 0;
-
-    &__title {
-        border: 2px solid blue;
-        padding: 10px;
-
-    &__text {
-        color: blue
-    }
-}
-
-
-taky třeba:
-.link {
-   display: inline-block;
-   padding: 10px;
-   text-decoretion: none;
-   color: black;
-
-  &:hover,
-  &:focus {
-    background: lightblue;
+  ``` css
+  .menu li {
+      list-style: none;
+      border: 2px solid blue;
+      padding: 10px;
   }
-  
-  &:active {
-    background: blue;
-    color: white;
+```
+* můžu udělat tohle:
+
+  ``` scss
+  .menu {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+
+      li {
+          list-style: none;
+          border: 2px solid blue;
+          padding: 10px;
+      }
   }
-}
+  ```
+
+* takhle zanořené styly se pak ve výsledném css ale stejně rozdělí do těch klasických takhle:
+
+  ``` css
+  .menu li {
+      list-style: none;
+      border: 2px solid blue;
+      padding: 10px;
+  }
+  ```
+* je to pohodlnější v tom, že je z toho na první pohled vidět, jaká je struktura stylu
+* podobně jako u klasických css selektorů je dobré si rozmyslet, kdy to zanořování dělat, protože tím zvyšuju někdy i zbytečně specificitu těch selektorů
+* stejně tak můžu používat znaky jako `+`, `>` apod:
+
+  ``` css
+  .menu {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+
+      > li {
+          list-style: none;
+          border: 2px solid blue;
+          padding: 10px;
+      }
+  }
+  ```
+
+* pokud použiju v nestingu `&`, tak se tam doplní název selektoru rodiče - můžu takhle vytvořit název dle metodologie BEM a nemusím pořád opakovat ten začátek:
+
+  ``` scss
+  .article {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+
+      &__title {
+          border: 2px solid blue;
+          padding: 10px;
+
+      &__text {
+          color: blue
+      }
+  }
+  }
+  ```
+
+* taky třeba:
+  ``` scss
+  .link {
+    display: inline-block;
+    padding: 10px;
+    text-decoretion: none;
+    color: black;
+
+    &:hover,
+    &:focus {
+      background: lightblue;
+    }
+    
+    &:active {
+      background: blue;
+      color: white;
+    }
+  }
+  ```
 
 > vsuvka: Bestshop project - je v poradku nastavit napevno napr. hodnoty sirky elementu, ale pak udelam casem treba pomer procentualni
 > nastavim napevno `623px` a `440px` a pak dam `flex-shrink` a `flex-grow` obema 1 1
