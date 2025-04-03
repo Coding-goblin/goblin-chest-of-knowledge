@@ -309,6 +309,30 @@ main.scss
     }
   }
   ```
+* nebo takhle:
+    ``` scss
+    @mixin dialogBox ($boxwidth, $backgroundColor) {
+    width: $boxwidth;
+    padding: 10px;
+    background: $backgroundColor;
+    border: 1px solid black;
+    margin: 40px auto;
+    position: relative;
+
+    &::after {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        background-color: $backgroundColor;
+        border: 1px solid black;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    }
+  ```
 
 > vsuvka: Bestshop project - je v poradku nastavit napevno napr. hodnoty sirky elementu, ale pak udelam casem treba pomer procentualni
 > nastavim napevno `623px` a `440px` a pak dam `flex-shrink` a `flex-grow` obema 1 1
