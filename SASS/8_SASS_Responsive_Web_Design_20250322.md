@@ -12,7 +12,7 @@
       display: none;
     }
   }
-```
+  ```
 
 * **breakpoint** = hranice, kde se změní layout na základě šířky viewportu (ale to se vztahuje na zásadní změny, chci, aby to bylo flexibilní a responzivní i mezi nimi)
 
