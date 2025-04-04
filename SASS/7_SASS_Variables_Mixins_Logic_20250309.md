@@ -1,4 +1,4 @@
-# SASS
+# SASS: Variables, mixins & logic
 
 * je potřeba čím dál míň, hodně funkcí se přesouvá do nativních CSS fcí
 * ale partials jsou jednou z těch unikátních věcí, které se hodně hodí a jsou důležité
@@ -266,7 +266,7 @@ ___
     @include border(green, top);
   }
   ```
-* 
+
 ### Cycles
 
 * podobné jako for v Javascriptu
@@ -304,3 +304,16 @@ ___
 
 > Introduction to Responsive Web Design and units (edited) 
 
+2. den SASS a RWD zakončili tím, že se bavili o responzivních a absolutních jednotkách
+
+
+
+v případě em jednotka odkazuje na rodiče, v případě čehokoli dalšího na tom elementu, tak se to vztahuje na ten element samotný? zeptat se GPT...
+
+
+viewport units:
+1vw = 1% of viewport width;
+1vh = 1% of viewport height;
+1vmin = 1vw or 1vh, whichever value is lower;
+1vmax = 1vw or 1vh, whichever value is higher;
+These properties indicate that for a viewport (or 'workspace') of a screen that is 1000px wide, the value of 1vw equals: 1% x 1000px = 10px.
