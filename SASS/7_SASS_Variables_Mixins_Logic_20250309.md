@@ -225,20 +225,20 @@ ___
     }    
   ```
 * těch parametrů si tam můžu takhle vytvořit, kolik chci, například:
-``` scss
-      @mixin box ($side1: right, $side2: bottom) {
-      background: #e5e5e5;
-      padding: 20px;
-      font-family: sans-serif;
-      border-#{$side1}: 10px solid red;
-      border-#{$side2}: 10px solid red;
-// takhle mi to dá tu border vpravo i dole, ale třeba bych si mohla dle situace vybrat, kterou z těch proměnných použiju
-    }
+  ``` scss
+        @mixin box ($side1: right, $side2: bottom) {
+        background: #e5e5e5;
+        padding: 20px;
+        font-family: sans-serif;
+        border-#{$side1}: 10px solid red;
+        border-#{$side2}: 10px solid red;
+  // takhle mi to dá tu border vpravo i dole, ale třeba bych si mohla dle situace vybrat, kterou z těch proměnných použiju
+      }
 
-    .odstavec1 {
-      @include box(right, bottom);
-    }    
-```
+      .odstavec1 {
+        @include box(right, bottom);
+      }    
+  ```
 ___
 
 ## Logic in SASS
@@ -288,23 +288,73 @@ tak si napíšu cyklus:
     .box#{$i} {background: gray;}
   }// $i počítá, na které té položce zrovna je, přes interpolaci ještě zajistím, aby se ke každému boxu přidalo to číslo jeho pořadí do názvu
   ```
+
+  * proměnnou `$i` můžu použít i uvnitř nastavení vlastnosti:
+  ``` scss
+    @for $i from 1 through 9 {
+    .boxWidth#{$i} {width: 10px * $i;}
+  }
+  ```
 ___
 
 ### Lists
 
-* pro automatické vytváření dosazování barev?? nebo jiných hodnot
-``` scss
-@each $s in $sizes {
-  .w#{$s} { width: $s * 1px; }
-  .h#{$s} { height: $s * 1px; }
-}
-```
+* pro automatické dosazování barev nebo jiných hodnot
+* vytvořím si seznam s hodnotami třeba ve `_variables.scss`, a ty potom pomocí funkce `@each` budu procházet a používat z nich ty hodnoty
+* použiju, když třeba vytvářím set výchozích hodnot pro web, které potom buď využiju já, nebo pošlu kolegovi - když budou chtít třeba barvy změnit, stačí, aby je přidali do toho seznamu `$colors`
+* takhle může ušetřit čas, pokud vytvářím dlouhé bloky CSS na základě nějakých hodnot
+
+  ``` scss
+  $colors: red, green, blue, yellow, pink, black;
+  $sizes: 20, 50, 100, 200; // tady nedám jednotku, ale v tom cyklu @each dám každou hodnotu vynásobit 1px - takhle se mi vytvoří hezčí ten název třídy, bude obsahovat jen w/h a číslo a NEBO můžu udělat interpolaci přes #{$ }
+
+  @each $color in $colors {
+    .bg#{$color} {
+      background: $color;
+      color: white;
+    }
+  }
+  ```
+
+  * to samé můžu udělat třeba se `$sizes`
+ 
+  ``` scss
+    @each $size in $sizes {
+      .w#{$size} { width: $size * 1px; }
+    }
+
+    @each $size in $sizes {
+      .h#{$size} { height: $size * 1px; }
+    }
+  ```
+  * nebo přes interpolaci bez násobení pixely:
+  ``` scss
+    @each $size in $sizes {
+      .h#{$size} { height: #{$size}px; } // nemůžu napsat třeba $sizepx
+    }
+  ```
+> je úplně jedno, jak nazvu tu proměnnou - jestli `$size`, `$color`, nebo `$abc` - hlavní je název seznamu, ten musí odpovídat - ale hodí se to nazývat smysluplně
+
+___
+
 ### Maps
 * tohle je užitečné spíš pro velké weby
+* `mapa` je taky seznam, ale neobsahuje jen hodnoty, ale i jejich názvy
+
+``` scss
+$barvy: (
+  primary: red,
+  secondary: blue,
+
+)
+
+
+
+
 
 > Introduction to Responsive Web Design and units (edited) 
 
-2. den SASS a RWD zakončili tím, že se bavili o responzivních a absolutních jednotkách
+1. den SASS a RWD zakončili tím, že se bavili o responzivních a absolutních jednotkách
 
 
 
