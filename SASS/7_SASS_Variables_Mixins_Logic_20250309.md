@@ -339,24 +339,47 @@ ___
 
 ### Maps
 * tohle je užitečné spíš pro velké weby
-* `mapa` je taky seznam, ale neobsahuje jen hodnoty, ale i jejich názvy
+* `mapa` je taky seznam, ale obsahuje nejen hodnoty, ale i jejich názvy
 
-``` scss
-$barvy: (
-  primary: red,
-  secondary: blue,
+  ``` scss
+  $barvy: (
+    primary: hotpink,
+    secondary: blue,
+    error: red,
+    success: green,
+    // kdycbych pak třeba zapomněl, že na webu jsou nějaké další messages, které naskakují uživateli, tak je normálně dodám sem do seznamu, a tím se pak můžou hned generovat jejich třídy:
+    warning: orange,
+    info: dodgerblue
+  );
+  ```
+* budu chtít generovat třídy například `.bg-primary` ne `bg-hotpink`
 
-)
+  ``` scss
+    @each $name, $value in $barvy {
 
+      .message-#{name} {
+        background: $value;
+      }
+    }
+  ```
+* Lists a Maps použiju obzvlášť třeba na hodnoty, které na webu potřebuju použít na spoustě různých míst
+  * třeba na button:
+    ``` scss
+      @each $name, $value in $barvy {
+          .button-#{name} {
+            border: 2px solid $value;
+          }
+        }
+    ```
+  
 
+> Inheritance a Functions přeskočil, že to moc nevyžijeme a bylo by to matoucí
 
+___
 
+## Introduction to Responsive Web Design and units
 
-> Introduction to Responsive Web Design and units (edited) 
-
-1. den SASS a RWD zakončili tím, že se bavili o responzivních a absolutních jednotkách
-
-
+* 
 
 v případě em jednotka odkazuje na rodiče, v případě čehokoli dalšího na tom elementu, tak se to vztahuje na ten element samotný? zeptat se GPT...
 
