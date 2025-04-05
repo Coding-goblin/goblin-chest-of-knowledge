@@ -447,11 +447,11 @@ ___
   * např. `height: 50%` můžu nastavit jedině pokud rodič toho prvku má napevno nastavenou `height`, jinak to nic nenastaví
 
 * **viewport units:**
-  |  UNIT  |  DEFINITION  |
+  |  **UNIT**  |  **DEFINITION**  |
   |-------|--------------------------------------|
-  | 1vw | 1% of viewport width |
-  | 1vh | 1% of viewport height |
-  | 1vmin | 1vw or 1vh, whichever value is lower |
-  | 1vmax | 1vw or 1vh, whichever value is higher |
+  | `1vw` | 1% of viewport width |
+  | `1vh` | 1% of viewport height |
+  | `1vmin` | `1vw` or `1vh` *(whichever value is lower)* |
+  | `1vmax` | `1vw` or `1vh`, *(whichever value is higher)*|
 
   These properties indicate that for a viewport (or 'workspace') of a screen that is 1000px wide, the value of 1vw equals: 1% x 1000px = 10px.
