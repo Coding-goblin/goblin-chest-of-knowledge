@@ -433,12 +433,16 @@ ___
     font-size: 150%; // nastavím v procentech hlavní velikost písma - bude to 1,5 x 16px v tomhle případě, počítá se to z prohlížeče
   }
 
-  .parent {
-    font-size: 2rem; // nastavím v relativní jednotce rem, která se počítá z html
+  h1 {
+    font-size: 3rem; // pokud chci jinou než tu svoji výchozí,nastavím v relativní jednotce rem, která se počítá z html
   }
 
-  .child {
-    font-size: 2rem; // nastavím v relativní jednotce rem, která se počítá z html
+  h2 {
+    font-size: 2rem; // pokud chci jinou než tu svoji výchozí,nastavím v relativní jednotce rem, která se počítá z html
+  }
+
+  h3 {
+    font-size: 1.5rem;
   }
   ```
   **takhle má uživatel pořád možnost nastavit si v nastavení prohlížeče větší písmo, a já mám možnost zachovat si poměry velikostí písma tak, jak jsem zamýšlel**
@@ -455,3 +459,7 @@ ___
   | `1vmax` | `1vw` or `1vh`, *(whichever value is higher)*|
 
   These properties indicate that for a viewport (or 'workspace') of a screen that is 1000px wide, the value of 1vw equals: 1% x 1000px = 10px.
+
+* tzv. **dynamická typografie**
+  * `vw` můžu použít pro `font-size` - tím se to zvětší podle toho, jak se zvětší velikost okna - třeba se to použije na nějaké větší nadesignované nadpisy na webu
+  * zároveň se to dá omezit zdola i shora, aby to nešlo do nějakých extrémně velkých nebo malých velikostí
