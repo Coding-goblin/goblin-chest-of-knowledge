@@ -379,14 +379,77 @@ ___
 
 ## Introduction to Responsive Web Design and units
 
-* 
+* RWD - vytváření CSS, které se přizpůsobí tomu, na jakém zařízení se to prohlíží
+* cílem je co nejlepší user experience na všech zařízeních
+* **responsive web design vs. adaptive web design**:
+  * RWD: nejčastěji řeší šířku displeje, ale nejen to
+    * nastavuje se přesně podle šířky displeje, i po pixelu
+  * AWD: přednastavené rozpětí šířek, a podle nich individuální design
+  * ale dneska se už dělá kombinace obojího - mám pevně daná rozpětí, ale v okolí těch hranic se to plynule přizpůsobuje změnám
+  * už se moc neřeší, jestli je to RWD nebo AWD
 
-v případě em jednotka odkazuje na rodiče, v případě čehokoli dalšího na tom elementu, tak se to vztahuje na ten element samotný? zeptat se GPT...
+* dnes už **responsive web design = web design**
 
+* např. pro mobile devices nemá moc cenu nastavovat `:hover`, protože nemívají myš, kterou by někdo na nějaký element mohl najet
 
-viewport units:
-1vw = 1% of viewport width;
-1vh = 1% of viewport height;
-1vmin = 1vw or 1vh, whichever value is lower;
-1vmax = 1vw or 1vh, whichever value is higher;
-These properties indicate that for a viewport (or 'workspace') of a screen that is 1000px wide, the value of 1vw equals: 1% x 1000px = 10px.
+___
+
+### Units
+
+* **absolutní jednotka** = `px`:
+  ``` scss
+  .parent {
+    font-size: 20px;
+  }
+  ```
+* **relativní jednotky:**
+
+  * `em` = počet jednotek `font-size` rodiče
+    * `2em` = velikost 2x větší než `font-size` rodiče
+    * pokud není `font-size` v rodiči nastavená, dědí se vždy o úroveň výš, až k defaultní `font-size` v prohlížeči, což bývá `16px`
+    * u jakékoli jiné vlastnosti než `font-size` počítá jednotka `em` s `font-size` prvku, ve kterém se ta vlastnost nachází:
+  
+    ``` scss
+    .child {
+      font-size: 2em; // počítá se z font-size rodičů
+      border: 2em solid gray; // počítá se z font-size elementu samotného
+      }
+
+  * `rem` = počet jednotek velikosti `root element = html` (`2em` = 2x větší než velikost písma nebo vlastnosti v `html`)
+
+  * `%`
+  * `vw`
+  * `vh`
+
+* obecně je dobré **nenastavovat velikost písma v `px`**, protože nedává uživateli možnost zvetšit si písmo v prohlížeči - resp. i když to udělá, tak tam, kde jsem nastavil velikost písma v `px`, tak to nastavení nic nezmění
+
+* `font-size` raději nastavovat v `em` nebo `rem`
+* vlastnosti písma se dědí z `parent` na `child` element, pokud jsem je někde nezměnil
+
+* když chci nastavit svému webu konkrétní velikosti písma, ale i tak dát uživateli možnost zvětšit si písmo v prohlížeči, tak best practice je tohle:
+
+  ``` scss
+  html {
+    font-size: 150%; // nastavím v procentech hlavní velikost písma - bude to 1,5 x 16px v tomhle případě, počítá se to z prohlížeče
+  }
+
+  .parent {
+    font-size: 2rem; // nastavím v relativní jednotce rem, která se počítá z html
+  }
+
+  .child {
+    font-size: 2rem; // nastavím v relativní jednotce rem, která se počítá z html
+  }
+  ```
+  **takhle má uživatel pořád možnost nastavit si v nastavení prohlížeče větší písmo, a já mám možnost zachovat si poměry velikostí písma tak, jak jsem zamýšlel**
+
+* `height` se nastaví podle výšky obsahu, pokud ji nenastavím napevno
+  * např. `height: 50%` můžu nastavit jedině pokud rodič toho prvku má napevno nastavenou `height`, jinak to nic nenastaví
+
+* **viewport units:**
+  | 1vw | 1% of viewport width |
+  | 1vh | 1% of viewport height |
+  | 1vmin | 1vw or 1vh, whichever value is lower |
+  | 1vmax | 1vw or 1vh, whichever value is higher |
+
+  These properties indicate that for a viewport (or 'workspace') of a screen that is 1000px wide, the value of 1vw equals: 1% x 1000px = 10px.
