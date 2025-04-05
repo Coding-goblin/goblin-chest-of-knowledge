@@ -447,6 +447,8 @@ ___
   * např. `height: 50%` můžu nastavit jedině pokud rodič toho prvku má napevno nastavenou `height`, jinak to nic nenastaví
 
 * **viewport units:**
+  |  UNIT  |  DEFINITION  |
+  |-------|--------------------------------------|
   | 1vw | 1% of viewport width |
   | 1vh | 1% of viewport height |
   | 1vmin | 1vw or 1vh, whichever value is lower |
