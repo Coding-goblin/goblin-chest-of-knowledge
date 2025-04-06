@@ -89,7 +89,8 @@ ___
 * můžu určit střed animace přes `transform-origin: center` nebo `50%`
 * `50%` je default, může být třeba `right`
 
-* **transition vs animation**
+### Transition vs animation
+
 * **transition:** hodnota, kterou jsem měnila třeba v :hover 2s (nebo jiný čas);
 
   ```scss
@@ -101,7 +102,9 @@ ___
 * obecně čas animace by měl trvat krátce, dlouhé štvou uživatele - takže třeba mezi 0.2s - 0.3s, max 0.4s třeba u větší animace
 
 * **animation** se bude dít sama od sebe, ne v reakci na akci uživatele (to dělá transition)
+
 * musím nadefinovat keyframes:
+
   ```scss
   @keyframes posun {
     from {transform: translateX(0)};
@@ -127,4 +130,4 @@ ___
   ```
 * rozměry, barvy, paddingy, velikosti písma... všechno, co jde vyjádřit číslem a dopočítat hodnoty mezi dvěma hodnotami, tak lze animovat
 
-* pak složitější animace nějak načasované apod se dělají v javascriptu
+* pak složitější animace nějak načasované apod. se dělají v javascriptu
