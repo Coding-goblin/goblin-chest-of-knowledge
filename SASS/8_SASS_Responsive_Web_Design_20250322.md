@@ -92,6 +92,7 @@ můžu ale udělat sass proměnné:
   opsat si kód od něj - ukazoval před obědem
   pak můžu upravit jen ty `@mixin`s a změní se mi to všude
 
+___
 
 ## SCSS Grid
 
