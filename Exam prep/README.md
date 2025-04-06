@@ -205,7 +205,7 @@ $myColors: #f00, #0f0, #00f;
 Použití hodnoty ze seznamu:
 ```scss
 p {
-  color: list.nth($myColors, 1);
+  color: list.nth($myColors, 1); // $nazevSeznamu, 1 - kolikata hodnota to je
 }
 ```
 
@@ -217,7 +217,7 @@ Samotné je nám to k ničemu, ale můžeme to použít pro další zpracování
 
 ### Mapy
 
-Pokročilejší podobou seznamů jsou tzv. **mapy**. Mapa je v podstatě seznam, kde nejsou jen hodnoty, ale každá hodnota má i nějaké jméno (říkáme mu **klíč**).
+Pokročilejší podobou seznamů jsou tzv. **mapy**. Mapa je v podstatě seznam, kde nejsou jen hodnoty, ale každá hodnota má i nějaké jméno (říkáme mu **klíč**). Pouziva se casteji nez seznamy.
 
 ```scss
 @use "sass:map";
