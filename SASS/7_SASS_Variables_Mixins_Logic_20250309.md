@@ -415,7 +415,7 @@ ___
       border: 2em solid gray; // počítá se z font-size elementu samotného
       }
 
-  * `rem` = počet jednotek velikosti `root element = html` (`2em` = 2x větší než velikost písma nebo vlastnosti v `html`)
+  * `rem` = počet jednotek `font-size` `root element = html` (`2em` = 2x větší než velikost písma nebo vlastnosti v `html`)
 
   * `%`
   * `vw`
