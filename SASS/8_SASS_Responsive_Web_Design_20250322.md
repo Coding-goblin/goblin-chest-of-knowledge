@@ -49,14 +49,14 @@ když dělám RWD, často se začíná od layoutu pro mobil - tzv. `mobile first
   }
   ```
 
-  * pořadí kódu je důležitý - mobil bude první, pak přes @media budu nabalovat další styly
-  * všechny hodnoty ze stylu mobilu zůstávají, jen přepisuju některé z nich, případně přidávám
-  * většinou:
-          1. mobil (nejužší zařízení)
+* pořadí kódu je důležitý - mobil bude první, pak přes `@media` budu nabalovat další styly
+* všechny hodnoty ze stylu mobilu zůstávají, jen přepisuju některé z nich, případně přidávám
+* většinou:
+      1. mobil (nejužší zařízení)
 
-          2. tablet (prostřední)
+      2. tablet (prostřední)
 
-          3. PC (nejširší)
+      3. PC (nejširší)
 
 * pokud bych chtěl, aby to nemělo rámeček, tak musím dát `border: none;` - to se pak dědí do následujícího `@media`
 
