@@ -95,16 +95,17 @@ můžu ale udělat sass proměnné:
 
 ## SCSS Grid
 
-SCSS grid a CSS grid nejsou to stejné
-používá se pro rozvržení elementů na stránce v pomyslných (většinou) 12ti sloupcích
-šířku určím tak, že každý element bude měřit x sloupců/12
-Construction of grid - elements:
-container,
-rows,
-columns,
-gutters (spaces between columns)
+* SCSS grid a CSS grid nejsou to stejné
+* používá se pro rozvržení elementů na stránce v pomyslných (většinou) 12ti sloupcích
+* šířku určím tak, že každý element bude měřit x sloupců/12
 
+* **Construction of grid - elements:**
+  * container,
+  * rows,
+  * columns,
+  * gutters (spaces between columns)
 
+```html
 <div class="container">
 
     <div class="row">
@@ -116,47 +117,50 @@ gutters (spaces between columns)
     </div>
 
   </div>
-to číslo u class je pro mě značka, kolik sloupců v tom gridu bude element zabírat
-mezery mezi těmi sloupci je nejběžnější a nejlepší nastavovat NE pomocí gap, ale pomocí padding
+  ```
+* to číslo u `class` je pro mě značka, kolik sloupců v tom gridu bude element zabírat
+* mezery mezi těmi sloupci je nejběžnější a nejlepší nastavovat NE pomocí `gap`, ale pomocí `padding`
+
+* automatické vygenerování gridu:
+
+  ```scss
+  @use "sass:math";
+
+  * {
+      box-sizing: border-box;
+  }
+
+  $columns: 12;
+
+  $column-base-width: math.div(100%, $columns);
+  $gutter: 24px;
+
+  .container {
+      max-width: 960px;
+      margin: 0 auto;
+  }
+
+  .row {
+      display: flex;
+      flex-wrap: wrap;
+  }
 
 
-automatické vygenerování gridu:
-@use "sass:math";
+  [class*="col-"] {
+      min-height: 1px;
+      width: $column-base-width;
+      padding: 0 math.div($gutter, 2);
+  }
 
-* {
-    box-sizing: border-box;
-}
+  @for $i from 1 through $columns {
+      .col-#{$i} {
+      width: $column-base-width * $i;
+      }
+  }
 
-$columns: 12;
-
-$column-base-width: math.div(100%, $columns);
-$gutter: 24px;
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-
-[class*="col-"] {
-    min-height: 1px;
-    width: $column-base-width;
-    padding: 0 math.div($gutter, 2);
-}
-
-@for $i from 1 through $columns {
-    .col-#{$i} {
-    width: $column-base-width * $i;
-    }
-}
-
-@media (max-width: 600px) {
-    [class^="col-"] {
-    width: 100%;
-    }
-}
+  @media (max-width: 600px) {
+      [class^="col-"] {
+      width: 100%;
+      }
+  }
+  ```
