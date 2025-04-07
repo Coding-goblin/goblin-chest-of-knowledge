@@ -259,8 +259,35 @@ Například budu chtít vytvořit třídy `.item-1`, `.item-2` a `.item-3`, kde 
 
 Pozor na to, že pokud chci Sass proměnnou použít v názvu třídy, musím použít tzv. **interpolaci** pomocí `#{ $promenna }`.
 
+- můžu třeba vytvořit list a pak to použít v cyklu `@for`:
 
-## GRID
+  ```scss
+  $boxColors: orange, dodgerblue, hotpink, green, black;
+
+  @for $i from 1 through 5 {
+
+    .color#{$i} {
+      background: list.nth($boxColors, $i);
+    }
+  }
+  ```
+
+- ale je lepší udělat to tak, aby ten cyklus `@for` nebyl omezený konkrétním číslem - místo toho ho omezím délkou seznamu:
+
+  ```scss
+  $boxColors: orange, dodgerblue, hotpink, green, black;
+
+  @for $i from 1 through list.lenght($boxColors) {
+
+    .color#{$i} {
+      background: list.nth($boxColors, $i);
+    }
+  }
+  ```
+  - takhle to vždycky použije všechny položky ze seznamu, i kdybych tam nějaké později přidala - samo si to zjistí, kolik těch položek tam je
+  - to samé můžu udělat i s mapou
+
+## SASS GRID
 
 Chceme vytvořit vlastní **grid systém**, podobný např. systému z Bootstrapu.
 ⚠️ Poroz, neplést s nativním CSS gridem (`display: grid;`).

@@ -1,0 +1,22 @@
+@use "sass:math";
+
+
+* {
+  box-sizing: border-box;;
+}
+
+
+$columns: 12; // tady si nastavuje počet sloupců, do kterých se grid dělí - default je 12, ale můžeš si nastavit kolik chceš
+$column-base-width: math.div(100%, $columns);
+
+.row {
+  display: flex;
+}
+
+
+@for $i from 1 through $columns {
+  
+  .col-#{$i} {
+    width: math.div($i * $column-base-width, 1);
+  }
+}
