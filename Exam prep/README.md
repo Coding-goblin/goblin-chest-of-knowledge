@@ -397,5 +397,5 @@ $gutter: 24px;
 - proč nechci dávat mezeru mezi těmi sloupci pomocí `gap`:
   - flexbox roztáhne každý řádek zvlášť podle počtu prvků a jejich poměru, a pak nebudou sedět mezery mezi různými řádky vzájemně
   
-  ![nastaveni gap] (nastavenigap.png)
+<img src="nastavenigapgrid.png">
 
