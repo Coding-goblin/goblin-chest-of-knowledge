@@ -339,7 +339,7 @@ Protože chceme, aby byl náš grid konfigurovatelný (třeba jiný počet sloup
 ```scss
 @use 'sass:math';
 
-$columns: 12;
+$columns: 12; // tady si nastavuje počet sloupců, do kterých se grid dělí - default je 12, ale můžeš si nastavit kolik chceš
 $column-base-width: math.div(100%, $columns);
 $gutter: 24px;
 
@@ -353,7 +353,7 @@ $gutter: 24px;
   flex-wrap: wrap;
 }
 
-[class*="col-"] {
+[class*="col-"] {// vyber všechny prvky, které mají třídu obsahující col-
   min-height: 1px;
   width: 100%;
   padding-inline: math.div($gutter, 2);
@@ -365,3 +365,37 @@ $gutter: 24px;
   }
 }
 ```
+- potom můžu v HTML tvořit další řádky v layoutu a klidně jim dát jiné poměry, třeba:
+
+  ``` html
+    <div class="row">
+      <div class="col-6">polovina</div>
+      <div class="col-6">polovina</div>
+    </div>
+  ```
+
+- obvykle nemáme obsah webu od kraje ke kraji, takže se potom do CSS přidává `container` a v html se to do containeru zabalí:
+
+  ``` scss
+  .container {
+    max-width: 1000px; // omezení šířky containeru
+    margin-inline: auto; // vycentrování containeru
+  }
+  ```
+
+  ``` html
+  <div class="container">
+    <div class="row">
+      <div class="col-3">ctvrtina</div>
+      <div class="col-6">polovina</div>
+      <div class="col-3">ctvrtina</div>
+    </div>  
+  </div>
+  ```
+- tedy procentuální šířka sloupců nebude procento z šířky celé stránky, ale ze šířky `containeru`, do kterého je grid zabalený
+
+- proč nechci dávat mezeru mezi těmi sloupci pomocí `gap`:
+  - flexbox roztáhne každý řádek zvlášť podle počtu prvků a jejich poměru, a pak nebudou sedět mezery mezi různými řádky vzájemně
+  
+  ![nastaveni gap] (nastavenigap.png)
+

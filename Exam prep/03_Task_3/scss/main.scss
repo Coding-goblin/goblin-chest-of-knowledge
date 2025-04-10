@@ -9,10 +9,18 @@
 $columns: 12; // tady si nastavuje počet sloupců, do kterých se grid dělí - default je 12, ale můžeš si nastavit kolik chceš
 $column-base-width: math.div(100%, $columns);
 
+.container {
+  max-width: 1000px;
+  margin-inline: auto; // vycentrování kontejneru
+}
+
 .row {
   display: flex;
 }
 
+[class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
+  border: 5px solid blue;
+}
 
 @for $i from 1 through $columns {
   
