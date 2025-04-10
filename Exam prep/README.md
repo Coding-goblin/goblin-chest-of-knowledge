@@ -440,7 +440,7 @@ $gutter: 24px;
 - pak můžu vytvořené třídy použít pro snadné vytvoření basic layoutu v html:
 
   ``` html
-    <div class="container">
+  <div class="container">
     <header class="row">
       <div class=" logo col-4">LOGO</div>
 
@@ -477,10 +477,13 @@ $gutter: 24px;
       <div class="col-4">
         <h2>Column 1</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-      
+      </div>   
   </div>
   ```
   - potom výsledek:
   <img src="gridlayout.png" width=1001 height=322>
-  
+
+- výhoda je, že je to potom rychlejší, udělat layout - 80% webů to používá
+  - ale v lecčems je CSS grid lepší
+
+- **tip ke zkoušce: i kdyby mi to na tom webu nefungovalo, ať napíšu všechno, na co si vzpomenu/vím - dostanu i částečné body, když něco zvládnu**
