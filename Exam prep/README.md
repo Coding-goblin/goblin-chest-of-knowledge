@@ -1,8 +1,17 @@
 # Příprava na zkoušku
 
 * v LMS se otevre zkouska s 5 ukoly, vsech 5 prikladu ma jeden repozitar
+* někdy ráno, nejpozději v 9 se odemkne v LMS zkouška
+* bude tam odkaz na stažení repozitáře - udělám fork a clone do počítače, udělám si vite, npm install apod.
+* udělám všechny úkoly, mám na to 2 hodiny - ale nevadí, pokud přetáhneme třeba do 12 nebo půl 1
+* odevzdám tak, že udělám commit po každém tasku (ideálně), do svého repozitáře
+* pak udělám pull request do toho původního repozitáře (v rámci toho pull requestu uvidí moje řešení oproti zadání)
+* během sobotního večera-nedělního rána to oboduje, dostaneme komentáře k pull requestu a napíše nám na Slack výsledek zkoušky, nejpozději do nedělního večera budu mít výsledek zkoušky
+* případný opravný termín se pak domluví
+* v neděli si pak na tom hovoru můžeme ukázat správné řešení
+
 * je tam pouzity parcel, ale on by rad, abychom pouzili `vite`
-* kdyz si repozitar stahnu, bude nastaveny na `parcel` 
+* kdyz si repozitar stahnu, bude nastaveny na `parcel`
 
 ## ⚠️ Úprava nastavení repozitáře před započetím práce
 
