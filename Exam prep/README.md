@@ -350,7 +350,7 @@ $gutter: 24px;
 
 .row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; // aby se případně sloupec, který je tam navíc, posunul dolů na další řádek
 }
 
 [class*="col-"] {// vyber všechny prvky, které mají třídu obsahující col-
@@ -395,7 +395,92 @@ $gutter: 24px;
 - tedy procentuální šířka sloupců nebude procento z šířky celé stránky, ale ze šířky `containeru`, do kterého je grid zabalený
 
 - proč nechci dávat mezeru mezi těmi sloupci pomocí `gap`:
-  - flexbox roztáhne každý řádek zvlášť podle počtu prvků a jejich poměru, a pak nebudou sedět mezery mezi různými řádky vzájemně
-  
+  - flexbox roztáhne každý řádek zvlášť podle počtu prvků a jejich poměrů, a pak nebudou sedět mezery mezi různými řádky vzájemně
+  - například takhle to vypadá, když jsem nastavil `gap: 20px`:
 <img src="nastavenigapgrid.png" width=1113 height=279>
 
+- nám reálně nejde o to, aby byla mezera mezi sloupci jako takovými, ale aby obsah, který v nich je, byl oddělený vzájemně - takže můžeme třeba nastavit každému tomu sloupci nějaký `padding`:
+  ``` scss
+  [class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
+    border: 5px solid blue;
+    padding-inline: 20px;
+  }
+  ```
+
+- akorátže my nebudeme chtít tohle nastavovat napevno, takže to nastavíme přes proměnnou: `$gutter`
+  ``` scss
+  $gutter: 30px; // mezera mezi sloupci
+
+  [class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
+  border: 5px solid blue;
+  padding-inline: math.div($gutter, 2); // padding na levé a pravé straně sloupce
+  }
+  ```
+
+- často se nastavuje pro sloupec `min-height: 1px;`, aby kdyby náhodou ve sloupci nebyl obsah, aby i tak zabíral místo - ale prý to není tak podstatný
+
+- chci, aby to bylo responzivní:
+
+``` scss
+[class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
+  border: 5px solid blue;
+  width: 100%;
+  padding-inline: math.div($gutter, 2); // padding na levé a pravé straně sloupce
+}
+
+@media (min-width: 800px) { // určím, od jaké velikosti se mají sloupce vytvořit, na menším displeji budou mít šířku 100% šířky okna a budou pod sebou
+  @for $i from 1 through $columns {
+    
+    .col-#{$i} {
+      width: math.div($i * $column-base-width, 1);
+    }
+  }
+}
+```
+- pak můžu vytvořené třídy použít pro snadné vytvoření basic layoutu v html:
+
+  ``` html
+    <div class="container">
+    <header class="row">
+      <div class=" logo col-4">LOGO</div>
+
+      <div class="menu col-8">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </div>  
+    </header>
+
+    <div class="banner row">
+      <div class="col-6">
+        <h1>Welcome to our website</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="col-6">
+        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-4">
+        <h2>Column 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="col-4">
+        <h2>Column 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="col-4">
+        <h2>Column 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      
+  </div>
+  ```
+  - potom výsledek:
+  <img src="gridlayout.png" width=1001 height=322>
+  
