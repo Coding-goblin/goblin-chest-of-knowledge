@@ -228,22 +228,22 @@ $gutter: 24px;
 
 - chci, aby to bylo responzivní:
 
-``` scss
-[class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
-  border: 5px solid blue;
-  width: 100%;
-  padding-inline: math.div($gutter, 2); // padding na levé a pravé straně sloupce
-}
+  ``` scss
+  [class*=col-] { // vyber všechny prvky, které mají třídu obsahující col-
+    border: 5px solid blue;
+    width: 100%;
+    padding-inline: math.div($gutter, 2); // padding na levé a pravé straně sloupce
+  }
 
-@media (min-width: 800px) { // určím, od jaké velikosti se mají sloupce vytvořit, na menším displeji budou mít šířku 100% šířky okna a budou pod sebou
-  @for $i from 1 through $columns {
-    
-    .col-#{$i} {
-      width: math.div($i * $column-base-width, 1);
+  @media (min-width: 800px) { // určím, od jaké velikosti se mají sloupce vytvořit, na menším displeji budou mít šířku 100% šířky okna a budou pod sebou
+    @for $i from 1 through $columns {
+      
+      .col-#{$i} {
+        width: math.div($i * $column-base-width, 1);
+      }
     }
   }
-}
-```
+  ```
 - pak můžu vytvořené třídy použít pro snadné vytvoření basic layoutu v html:
 
   ``` html
