@@ -97,7 +97,7 @@ ___
 ## SCSS Grid
 
 Chceme vytvořit vlastní **grid systém**, podobný např. systému z Bootstrapu.
-⚠️ Poroz, neplést s nativním CSS gridem (`display: grid;`).
+⚠️ Pozor, neplést s nativním CSS gridem (`display: grid;`).
 
 Jde nám o to, vytvořit si vlastní systém, kde prostor rozdělíme např. na 12 stejně širokých částí.
 Budeme vytvářet řádky a sloupce. Šířku jednotlivých sloupců chceme nastavovat tak, že řekneme, kolik 1/12 bude sloupec zabírat.
@@ -109,69 +109,69 @@ Budeme vytvářet řádky a sloupce. Šířku jednotlivých sloupců chceme nast
 - atd.
 
 **V CSS bychom to tedy nastavili takto:**
-```scss
-.col-1  { width: 8.333%;  } // 1 dvanáctina ze 100%
-.col-2  { width: 16.666%; } // 2 dvanáctiny ze 100%
-.col-3  { width: 25%;     } // 3 dvanáctiny ze 100%
-// ...atd.
-.col-11 { width: 91.666%; } // 11 dvanáctin ze 100%
-.col-12 { width: 100%;    } // 12 dvanáctin ze 100%
-```
+  ```scss
+  .col-1  { width: 8.333%;  } // 1 dvanáctina ze 100%
+  .col-2  { width: 16.666%; } // 2 dvanáctiny ze 100%
+  .col-3  { width: 25%;     } // 3 dvanáctiny ze 100%
+  // ...atd.
+  .col-11 { width: 91.666%; } // 11 dvanáctin ze 100%
+  .col-12 { width: 100%;    } // 12 dvanáctin ze 100%
+  ```
 
 **Row**
 Sloupce mají být na stránce vedle sebe, takže budeme potřebovat sloupce uzavřít do rodiče - budeme mu říkat **řádek**, takže použijeme třídu `.row`. A nastavíme na ni **flexbox**.
 
 Zároveň chceme, aby se sloupec dal na nový řádek, když součet šířky sloupců přesáhne 12. Takže na flexbox zapneme i `wrap`.
 
-```scss
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
+  ```scss
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
 ```
 
 V HTML by potom použití vypadalo takto:
-```html
-<div class="container">
-  <div class="row">
-    <div class="col-3">Čtvrtina stránky</div>
-    <div class="col-6">Polovina stránky</div>
-    <div class="col-3">Čtvrtina stránky</div>
+  ```html
+  <div class="container">
+    <div class="row">
+      <div class="col-3">Čtvrtina stránky</div>
+      <div class="col-6">Polovina stránky</div>
+      <div class="col-3">Čtvrtina stránky</div>
+    </div>
   </div>
-</div>
-```
+  ```
 
 Protože chceme, aby byl náš grid konfigurovatelný (třeba jiný počet sloupců na řádku než 12, mezery mezi sloupci, apod.), vytvoříme ho programově pomocí Sassu:
 
-```scss
-@use 'sass:math';
+  ```scss
+  @use 'sass:math';
 
-$columns: 12; // tady si nastavuje počet sloupců, do kterých se grid dělí - default je 12, ale můžeš si nastavit kolik chceš
-$column-base-width: math.div(100%, $columns);
-$gutter: 24px;
+  $columns: 12; // tady si nastavuje počet sloupců, do kterých se grid dělí - default je 12, ale můžeš si nastavit kolik chceš
+  $column-base-width: math.div(100%, $columns);
+  $gutter: 24px;
 
-.container {
-  max-width: 960px;
-  margin-inline: auto;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap; // aby se případně sloupec, který je tam navíc, posunul dolů na další řádek
-}
-
-[class*="col-"] {// vyber všechny prvky, které mají třídu obsahující col-
-  min-height: 1px;
-  width: 100%;
-  padding-inline: math.div($gutter, 2);
-}
-
-@for $i from 1 through $columns {
-  .col-#{$i} {
-    width: $column-base-width * $i;
+  .container {
+    max-width: 960px;
+    margin-inline: auto;
   }
-}
-```
+
+  .row {
+    display: flex;
+    flex-wrap: wrap; // aby se případně sloupec, který je tam navíc, posunul dolů na další řádek
+  }
+
+  [class*="col-"] {// vyber všechny prvky, které mají třídu obsahující col-
+    min-height: 1px;
+    width: 100%;
+    padding-inline: math.div($gutter, 2);
+  }
+
+  @for $i from 1 through $columns {
+    .col-#{$i} {
+      width: $column-base-width * $i;
+    }
+  }
+  ```
 - potom můžu v HTML tvořit další řádky v layoutu a klidně jim dát jiné poměry, třeba:
 
   ``` html
