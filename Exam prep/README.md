@@ -82,7 +82,7 @@ Podobně jako u obrázků, základem je nastavení šířky na `100%`.
 
 ```scss
 .video {
-  width: 100%:
+  width: 100%;
   max-width: 1000px;
 }
 ```
