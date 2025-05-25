@@ -296,6 +296,12 @@ Pozor na to, že pokud chci Sass proměnnou použít v názvu třídy, musím po
   - takhle to vždycky použije všechny položky ze seznamu, i kdybych tam nějaké později přidala - samo si to zjistí, kolik těch položek tam je
   - to samé můžu udělat i s mapou
 
+## Použití mapy ve @for loopu
+
+``` scss
+
+```
+
 ## SASS GRID
 
 Chceme vytvořit vlastní **grid systém**, podobný např. systému z Bootstrapu.
@@ -496,3 +502,7 @@ $gutter: 24px;
   - ale v lecčems je CSS grid lepší
 
 - **tip ke zkoušce: i kdyby mi to na tom webu nefungovalo, ať napíšu všechno, na co si vzpomenu/vím - dostanu i částečné body, když něco zvládnu**
+
+`transform: translate (-50%, -50%) rotate (45deg);` můžu napsat jako:
+``` scss
+translate: -50% -50
