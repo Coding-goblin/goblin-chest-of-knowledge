@@ -287,6 +287,11 @@ const user2 = new User(); // dalsi user, ale se stejnymi vlastnostmi
   nadpis.style.fontFamily = "Arial";
   ```
   * tímhle ale určitě nechceme nahrazovat stylování webů, tohle použijeme třeba když budeme dělat interaktivní prvek a budeme chtít, aby po kliknutí se třeba změnila barva prvku apod.
+  * když změním nebo přidám CSS vlastnost prvku, tak se to přidá jako atribut `style` k tomu HTML elementu, neměním nijak CSS soubor:
+
+  ```html
+  <div class="edge" style="background-image: url("img/edge.jpg");"></div>
+  ```
   
   * vložím třeba obrázek, dám mu třídu .obrazek1 (a priradim mu proměnnou obrazek) - pak ho můžu vybrat a měnit jeho atributy, když je napíšu za tu tečku:
 
@@ -334,6 +339,10 @@ const user2 = new User(); // dalsi user, ale se stejnymi vlastnostmi
   const odstavce = document.querySelectorAll("p:nth-child(2)"); // takhle můžu vybrat třeba jen druhý odstavec
   ```
 * `NodeList` sice není pole, ale jako pole (array) se chová v tom, že sice nemá metody jako find, push apod., ale má metodu `forEach` a můžu odkazovat na prvky v něm pomocí indexů
+* z `NodeList` můžu vytvořit skutečné pole takhle a pak s ním pracovat jako s polem:
+  ```javascript
+  Array.from(nodelist)
+  ```
 
 * když budeme chtít na všechny ty prvky něco nastavit:
 ```javascript
