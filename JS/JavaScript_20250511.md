@@ -177,5 +177,166 @@ btn.addEventListener("click", priKliknuti); // pozor, k te funkci priKliknuti, n
 
 ### Události, na které můžeme reagovat
 
-* [Event index](https://developer.mozilla.org/en-US/docs/Web/Events)
-* 
+* [Event index - Mozzila](https://developer.mozilla.org/en-US/docs/Web/Events)
+* [HTML DOM Events - W3Schools](https://www.w3schools.com/jsref/dom_obj_event.asp)
+
+* ne všechny události mohou nastat na jakémkoliv prvku, některé jsou specifické pro určité prvky nebo pro stránku jako takovou
+
+* `mouseover` - najetí kurzorem myši na prvek
+```javascript
+  const btn = document.querySelector("button");
+
+  btn.addEventListener("mouseover", function () {
+
+  const content = document.querySelector(".content");
+  
+  // content.classList.add("hidden");
+  content.classList.toggle("hidden");
+
+  });
+```
+* `mouseout` - odstranění kurzoru myši z prvku
+* `dblclick` - dvojité kliknutí myší
+* `mousedown` - stisknutí myši (nemusím ji následně pustit, aby se něco stalo, spustí se hned po stisku tlačítka myši)
+* `mouseup` - puštění tlačítka myši poté, co jsem ho stiskl
+
+* do té funkce, která je jako parapetr funkce `event listener`, si javascript do jejího parametru automaticky doplňuje tzv. `event object`
+  * `event object` dává popis události, ke které došlo a na kterou ta funkce reaguje
+  * pokud bych chtěla, můžu tam dát parametr `event` nebo `e`:
+  ```javascript
+  const btn = document.querySelector("button"); 
+  const content = document.querySelector(".content");
+
+  btn.addEventListener("click", function (event) { 
+  content.classList.toggle("hidden"); 
+  });
+  ```
+  * do toho parametru - proměnné - `e` nebo `event` nám Javascript pošle spoustu vlastností, které tu událost popisují
+    * můžu si ten objekt zkusit vypsat do konzole:
+```javascript
+  const btn = document.querySelector("button");
+
+  btn.addEventListener("click", function (event) {
+
+  const content = document.querySelector(".content");
+
+  console.log(event);// tady chci vypsat vlastnosti objektu event
+  content.classList.toggle("hidden");
+
+  });  
+```
+* do konzole se mi pak vypíše toto:
+```javascript
+PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
+isTrusted: true
+altKey: false
+//atd., spoustu ruznych vlastnosti
+type: "click" // tady vidim, typ eventu - bylo to kliknuti, takze je tam "click"
+screenX: -1784 // souradnice, kde k eventu doslo v ramci obrazovky
+screenY: 159 // souradnice, kde k eventu doslo v ramci obrazovky
+pageX: 136 // souradnice, kde k eventu doslo v ramci stranky
+pageY: 38 // souradnice, kde k eventu doslo v ramci stranky
+offsetX: 110 // souradnice, kde k eventu doslo v ramci prvku jako takoveho
+offsetY: 12 // souradnice, kde k eventu doslo v ramci prvku jako takoveho
+altKey: false // informace, zda jsem při kliknutí taky držel klávesu Alt
+ctrlKey: false // informace, zda jsem při kliknutí taky držel klávesu Ctrl
+shiftKey: false // informace, zda jsem při kliknutí taky držel klávesu Shift
+target: button // obsahuje prvek, na kterem k eventu došlo 
+```
+  * tohle zatím nepotřebujeme, ale budeme potřebovat později, ale využiju toto:
+
+  * `target: button` obsahuje prvek, na kterem k eventu došlo
+    * kdybych měl funkci, kterou bych napojil jako reakci na kliknuti na 4 různé tlačítka, tak bych pomocí `event.target` mohl zjistit, na jakém z těch tlačítek k události došlo, a na jakou událost tedy reagujeme
+
+```javascript
+function vyberTlacitko(event) {
+  console.log("klik na tlacitko");
+  console.log(event.target);// vytiskne se mi ten element, ktery event vyvolal, napriklad "<button>1</button>"
+}
+
+const tlacitka = document.querySelectorAll(".tlacitka button"); // vybirame vsechna tlacitka uvnitr neceho, co ma tridu .tlacitka
+
+tlacitka.forEach( function(tlacitko) {//nemuzu na tu skupinu jako takovou primo pridat addEventListener, musim je projit treba forEach a pro kazde tlacitko to udelat samostatne
+  tlacitko.addEventListener("click", vyberTlacitko);
+});
+```
+
+* v CSS si taky můžu nastavit, aby se změnil vzhled tlačítka, respektive připravím si tam class, který pak můžu přes `classList.toggle` přidávat a odebírat:
+  ```CSS
+  .selected {
+    background-color: blue;
+    color: white;
+  }
+  ```
+
+  ```javascript
+  function vyberTlacitko(event) {//může být lepší si funkci nazvat, nedělat ji anonymní - pokud bych ji udělal anonymní, tak ji bude prohlížeč zbytečně nově vytvářet pro každý z těch prvků, na který ji pomocí forEach přidávám
+    event.target.classList.toggle("selected");
+  }
+
+  const tlacitka = document.querySelectorAll(".tlacitka button");
+
+  tlacitka.forEach( function(tlacitko) {
+    tlacitko.addEventListener("click", vyberTlacitko);
+  });
+  ```
+
+* tlačítko s počítadlem kliknutí:
+  ```javascript
+  const pocitadlo = document.querySelector(".pocitadlo");
+
+  let pocet = 0; // je dulezite promennou zalozit mimo tu funkci - kdyby byla uvnitr funkce, tak by to znamenalo, ze pokazde, kdyz se ta funkce spusti, tak se promenna znovu zalozi a zacne na 0
+
+  pocitadlo.addEventListener("click", function() {
+
+    pocet++;
+    pocitadlo.textContent = "Pocet kliknuti: " + pocet;
+  })
+  ```
+  * můžu chtít například, aby to počítadlo napočítalo třeba jen do 5 a pak přestalo fungovat:
+  ```javascript
+  const pocitadlo = document.querySelector(".pocitadlo");
+
+  let pocet = 0; // je dulezite promennou zalozit mimo tu funkci - kdyby byla uvnitr funkce, tak by to znamenalo, ze pokazde, kdyz se ta funkce spusti, tak se promenna znovu zalozi a zacne na 0
+
+  pocitadlo.addEventListener("click", function() {
+
+    if (pocet < 5) { // akoratze pokud to udelam takhle, tak se ta funkce bude spoustet dal pri kliknuti, jen se nebude nacitat to cislo
+    pocet++;
+    pocitadlo.textContent = "Pocet kliknuti: " + pocet;
+    }
+  })
+  ```
+* **můžu chtít `event listener` i odebrat** - musím do toho uvést na jakou událost se ten event listener pridal a jaka funkce se volala:
+
+  ```javascript
+  tlacitko.removeEventListener("click", priKliknuti);
+  ```
+  * tohle musím zadat proto, že tam může být víc různých `event listener`ů na stejném prvku, ale s jinou funkcí apod
+  * musí být identicky zadaný název eventu i název funkce, která se provádí, jinak se `eventListener` neodebere
+  * tohle může být problém, kdybych používal anonymní funkce - nemám jméno funkce, podle které bych mohl `eventListener` odebrat
+  * **pokud bych zkusil to odebrat zadáním anonymní funkce místo názvu funkce, tak se ta anonymní funkce vždycky jen znovu založí, neodebere se!**
+  * jinými slovy, pokud někam přidám `eventListener` a bude obsahovat anonymní funkci, tak už ho nikdy neodeberu - nemám, jak
+  * **to je proto, že anonymní funkce je funkce, pro kterou neexistuje žádné jméno, na které bych se mohl později odkázat - což je v pohodě, dokud se na ni v budoucnu nebudu už nikdy chtít odkazovat**
+
+* takže u toho počítadla bych to spíš potřeboval udělat takhle:
+```javascript
+const pocitadlo = document.querySelector(".pocitadlo");
+
+let pocet = 0;
+
+function zvetsiPocet() { //zalozim funkci, ale hned ji priradim jmeno
+  console.log("klik");
+
+  pocet++;
+  pocitadlo.textContent = "Pocet kliknuti: " + pocet;
+  
+  if (pocet === 5) {
+    pocitadlo.removeEventListener("click", zvetsiPocet); // diky tomuhle uz se nebude funkce vubec provadet, protoze jsem odebral eventListener
+  }
+}
+
+pocitadlo.addEventListener("click", zvetsiPocet); // pridavam eventListener, ale pouzivam jmeno funkce, co se ma provest, mam moznost pak eventListenera zase odebrat
+```
+
+
