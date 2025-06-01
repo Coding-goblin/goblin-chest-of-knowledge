@@ -195,12 +195,35 @@ btn.addEventListener("click", priKliknuti); // pozor, k te funkci priKliknuti, n
 
   });
 ```
-* `mouseout` - odstranění kurzoru myši z prvku
-* `dblclick` - dvojité kliknutí myší
-* `mousedown` - stisknutí myši (nemusím ji následně pustit, aby se něco stalo, spustí se hned po stisku tlačítka myši)
-* `mouseup` - puštění tlačítka myši poté, co jsem ho stiskl
+### Běžné eventy, na které mohu reagovat
+* akce myší:
+  * `mouseout` - odstranění kurzoru myši z prvku
+  * `dblclick` - dvojité kliknutí myší
+  * `mousedown` - stisknutí myši (nemusím ji následně pustit, aby se něco stalo, spustí se hned po stisku tlačítka myši)
+  * `mouseup` - puštění tlačítka myši poté, co jsem ho stiskl
+  * `mousemove` - pohyb myší po prvku
+* akce klávesnicí:
+  * `keydown`
+  * `keypress`
+  * `keyup`
+* akce dotykovým zařízením:
+  * `touchstart` - přiložení prstu na dotykovou obrazovku
+  * `touchmove` - pohyb prstem po dotykové obrazovce
+  * `touchend` - odstranění prstu z dotykové obrazovky po dotyku
+  * `touchcancel` - odstranění prstu z dotykové obrazovky např. sjetím mimo displej
+* `submit` - odeslání formuláře
+* `change` - změna textového pole
+* `focus` - nakliknutí kurzorem na prvek formuláře
+* `blur` - odkliknutí pryč z prvku formuláře
+* `scroll` - scroll na webu
+* 
+  * `load` - například se načetl obrázek, který trvá déle
+  * `unload` - 
+  * `DOMContentLoaded` - dochází k tomu na celém dokumentu, když se načte celý DOM tree
+    * tohle je důležitý proto, že můžu přidat eventListener na tuhle událost, aby se spustil konkrétní kód až ve chvíli, kdy se načetly všechny elementy, které to potřebuje
+    * pořád je lepší dávat `<script>` až na konec, ale můžu to použít v situacích, kdy píšu javascript, který bude používat někdo jiný - třeba když vytvářím javascript library pro jiné uživatele
 
-* do té funkce, která je jako parapetr funkce `event listener`, si javascript do jejího parametru automaticky doplňuje tzv. `event object`
+* do té funkce, která je jako parametr funkce `event listener`, si javascript do jejího parametru automaticky doplňuje tzv. `event object`
   * `event object` dává popis události, ke které došlo a na kterou ta funkce reaguje
   * pokud bych chtěla, můžu tam dát parametr `event` nebo `e`:
   ```javascript
@@ -338,5 +361,31 @@ function zvetsiPocet() { //zalozim funkci, ale hned ji priradim jmeno
 
 pocitadlo.addEventListener("click", zvetsiPocet); // pridavam eventListener, ale pouzivam jmeno funkce, co se ma provest, mam moznost pak eventListenera zase odebrat
 ```
+* po označení elementu můžu v konzoli v záložce Event Listeners vidět, zda nějaký `eventlistener` jsou na elementu
+  * pokud už event proběhl a eventListener se odebral, jako třeba po těch 5 kliknutích, tak musím kliknout v tom tabu na ikonku refreshe a zmizí mi info o eventListeneru, protože ho odstranila funkce removeEventListener, kterou jsem zahrnul do funkce napojene na eventListenera
 
+* většinou `eventListener`a odebírat nechci, protože třeba chci, aby tlačítka fungovala vždycky - ale hodí se mi to občas
+  * pokud třeba nechci, aby tlačítko fungoval s nějakou podmínkou, je lepší mu nastavit atribut `disabled`, což mi umožní zase ho zprovoznit, kdybych potřeboval:
+  ```javascript
+  // ------ zkousime nastavit, aby neslo objednat, pokud neco neni skladem --------//
 
+  function objednatZbozi() {
+    pocetKs -= 1;
+    skladem.textContent = pocetKs + " ks";
+
+    if (pocetKs === 0) {
+      // objednat.removeEventListener("click", objednatZbozi);// mohl bych tu funkci odebrat, ale uzivatel by mohl na cudlik dal klikat a ten by vizualne reagoval, coz neni ideal
+      objednat.disabled = true; // tohle prida do HTML prvku button atribut disabled a tim se znemozni na nej dal klikat a zesedne
+  }}
+
+  const skladem = document.querySelector(".skladem");
+  const objednat = document.querySelector(".objednat");
+
+  let pocetKs = 5; // tohle by jinak samozřejmě fungovalo jinak, měl bych to napojené na databázi s informacemi o skladových zásobách
+
+  skladem.textContent = pocetKs + " ks";
+
+  objednat.addEventListener("click", objednatZbozi);
+  ```
+
+* 
