@@ -388,4 +388,110 @@ pocitadlo.addEventListener("click", zvetsiPocet); // pridavam eventListener, ale
   objednat.addEventListener("click", objednatZbozi);
   ```
 
-* 
+* **propagace/probublávání událostí (event propagation)**:
+  * pokud mám do sebe vnořenené prvky, tak pokud kliknu na nějaký ten prvek, tak Javascript hledá, zda přímo na tom prvku není událost, která by na to kliknutí mohla reagovat
+
+  * potom, jakmile ta funkce skončí, tak ta událost "probublá" k tomu rodiči a opět javascript hledá, zda může spustit něco na základě té události - pokud ano, tak to spustí... a tak to jede dál a dál směr nahoru
+
+  * nějaký event dám na prvek a nějak to neošetřím, tak se aplikuje taky na všechny jeho rodiče skrze všechny ostatní nadřazené elementy (probublá nahoru) až k `<body>` a `HTML`
+
+  * pokud to probublá na element, kde nemám  `eventListener`a, tak to přeskočí na další a hledá ho tam atd.
+
+  * můžu zabránit tomu, aby se to dělo pomocí `event` objektu:
+  ```javascript
+  const vnejsi = document.querySelector(".vnejsi");
+  const prostredni = document.querySelector(".prostredni");
+  const vnitrni = document.querySelector(".vnitrni");
+
+  vnejsi.addEventListener("click", function() { // tady to nezarazim, takze event pujde dal na prostredni <div>
+    console.log("klik VNEJSI");
+  })
+
+  prostredni.addEventListener("click", function(event) {
+    event.stopPropagation(); //tady to zarazim, takze to probublani na posledniho rodice neprojde
+
+    console.log("klik PROSTREDNI");
+  })
+
+  vnitrni.addEventListener("click", function() {
+    console.log("klik VNITRNI");
+  })
+  ``` 
+  * můžu toho naopak i využít: například mám uvnitř `<div>`u víc tlačítek a chci přiřadit event všem, tak to přiřadím tomu `<div>`u
+    * akorát to pak bude reagovat i na to, když kliknu mimo ta tlačítka na ten `<div>`
+    * na event objektu ve vlastnosti `target` je to, kde se event vyvolal a na vlastnosti `currentTarget` to, kde je ten nastavený event
+
+* `console.dir(event.target)` = vypíše objekt do konzole, ale rozklikávací se všemi vlastnostmi toho DOM elementu
+  * obsahuje to vlastnost `tagName` a ta mi ukáže název HTML tagu elementu
+
+  * můžu tu funkci eventu podmínit tím, že to například musí mit `tagName: "BUTTON"`, aby to nereagovalo, když kliknu na ten `<div>`, ve kterém se tlačítko nachází:
+  ```javascript
+  const btnDiv = document.querySelector(".buttons");
+
+  btnDiv.addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") { // tim padem se funkce spusti pouze pri kliknuti na tlacitko, a ne kdekoliv na div, ve kterem se tlacitko nachazi
+      console.log("button klik");
+    }
+  })
+  ```
+  * většinou je naopak lepší přidat ty události přímo na tlačítka, ale mám tuhle možnost
+
+* když je například nějaký event na odkazu, tak nejdřív proběhne všechno, co jsem tam nastavil, a pak proběhne defaultni akce prohlížeče, třeba otevření stránky, na kterou odkaz míří
+  * téhle defaultní akci můžu taky zabránit, a to pomocí `event.preventDefault();`:
+  ```javascript
+  const odkaz = document.querySelector(".link");
+
+  odkaz.addEventListener("click", function(event) {
+    event.preventDefault(); // kvuli tomuhle se odkaz neotevre
+    console.log("kliknuti na odkaz");
+  })
+  ```
+  * tohle použiju třeba při zpracovávání formuláře - když třeba tlačítkem Odeslat nechci odeslat data a refreshovat prohlížeč, ale místo toho je zpracovat pomocí Javascriptu
+    * můžu třeba nastavit, kdyby tam byla možnost, že uživatel klikne na nějaký odkaz a ztratí tím vyplněná data ve formuláři, tak aby se mu tam objevil pop-up, jestli fakt chce odejít a přijít o vyplněná data, či ne
+      * pokud by kliknul na Ne, tak by tam právě bylo použito to preventDefault a z té stránky by ho to neposlalo dál
+
+* užitečné funkce v prohlížeči:
+  * `alert("text upozorneni");` na zobrazení hlášky, má tlačítko OK
+  * `confirm("text upozorneni");` na zobrazení potvrzení, má tlačítka OK a Zrušit
+    * tohle mi v javascriptu hodí buď hodnotu `true` nebo `false` - pokud kliknu na OK, tak `true`, pokud na Cancel, tak `false`
+
+  * v praxi to pak může vypadat zhruba takhle:
+  ```javascript
+  const odkaz = document.querySelector(".link");
+
+  odkaz.addEventListener("click", function(event) {
+    if (!confirm("Opravdu chces odejit a prijit o vsechna vyplnena data?")) {//pokud to neni true, proved nasledujici akci - zabran otevreni odkazu
+    event.preventDefault();
+    }
+    console.log("kliknuti na odkaz");
+  })
+  ```
+
+## Navigating the DOM tree
+
+* elementy v DOM tree mají různé vlastnosti, například
+  * `parentElement` = řekne mi rodiče elementu
+  * `previousElementSibling` = řekne mi sourozence elementu, který je před elementem
+  * `nextElementSibling` = řekne mi sourozence elementu, který je za elementem
+  * `children` = vrátí pole obsahující všechny potomky elementu
+  * `firstElementChild` = vrátí prvního potomka elementu
+  * `lastElementChild` = vrátí posledního potomka elementu
+  * `hasChildNodes()` = zjistí, zda element vůbec má potomky a vrátí true nebo false
+
+* tohohle můžu využít například když chci nastavit counter na tři různá tlačítka s různými rodiči tak, aby každé tlačítko mělo svůj counter:
+
+  ```javascript
+  const buttons = document.querySelectorAll(".btn");
+
+  function increaseCounter(event) {
+    const counter = event.target.parentElement.querySelector(".counter"); // tohle si samo dohleda rodice toho elementu, na ktery jsem kliknul, a pak v nem najde tridu counter a spusti funkci
+    let count = counter.textContent;
+    count++;
+    counter.textContent = count;
+  }
+
+  buttons.forEach (function (btn) {
+    btn.addEventListener("click", increaseCounter);
+
+  })
+  ```
