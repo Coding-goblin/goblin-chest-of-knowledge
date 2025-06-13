@@ -112,7 +112,7 @@
   * můžu na webu mít třeba tlačítko "Začít znovu", které to resetuje
 
 * basic kontrola správného vyplnění formuláře:
-  ```javascript
+```javascript
   const email = document.querySelector("#email");
   const name = document.querySelector("#name");
   const surname = document.querySelector("#surname");
@@ -172,3 +172,11 @@
     successMsg.classList.remove("d-none");
   })
 ```
+
+* vždycky když k hodnotám formulářových přistupuju přes `.value`, tak se mi hodnoty vrací jako string, i když to bylo původně číslo - pokud bych pak třeba s tou hodnotou chtěl dělat početní operace, musím si ho nejdřív převést na číslo, třeba takhle:
+
+  ```javascript
+  const cislo = Number(cislo.value);
+  ```
+
+* 
