@@ -13,3 +13,6 @@
 
 * format dat API byva vetsinou JSON (JavaScript Object Notation)
   * v JSON musi byt vlastnosti a retezce v uvozovkach, za vlastnostmi na konci objektu nesmi byt carka
+
+* nastaveni light a dark mode - najit, jak se to udela, asi pres CSSko a tridy
+  * CSSko ma podporu pro light a dark mode s nejakymi promennymi???
